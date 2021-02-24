@@ -12,7 +12,7 @@
 //2.saves when save button clicked
 //2a.onclick save-button
 //2b.saves in object property
-//2c. save the object in local storage
+//2c.save the object in local storage
 
 //localstorage.setItem("location. JSON.stringify(planer"));
 //JSON.parse(localStorage)
@@ -45,14 +45,15 @@ var timeSlot = {
 };
 let memo = $(".input");
 
-
+var keyList = ["nine", "ten", "eleven", "twelve", "one", "two", "three", "four"]
 
 
 
 
 function save(){
     let i = parseInt(this.value);
-    timeSlot[i] = memo[i].textContent;
+    let key = keyList[i];
+    timeSlot[key] = memo[i].textContent;
     console.log(timeSlot)
     // set timeSlot object into local storage
     localStorage.setItem("location", JSON.stringify(timeSlot));
@@ -78,13 +79,14 @@ for ( let i = 0; i < 8; i++) {
     }
 }
 
-// if (localStorage.getItem("location")){
+    if (localStorage.getItem("location")){
     var savedData = JSON.parse(localStorage.getItem("location"));
     console.log(savedData);
-    for ( let i = 0; i < savedData.length; i++) {
-        memo[i].textContent = savedData[i]; 
-        timeSlot[i] = savedData[i];
+    for ( let i = 0; i < keyList.length; i++) {
+        let key = keyList[i];
+        memo[i].textContent = savedData[key]; 
+        timeSlot[key] = savedData[key];
     }
-// }
+}
 
 // localStorage.removeItem("location");
